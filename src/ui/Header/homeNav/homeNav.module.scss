@@ -1,0 +1,17 @@
+
+.headerLink {
+    font-size: 3.2rem;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    margin: 20px;
+  
+    &:hover {
+      color: #007bff;
+    }
+  
+    &.active {
+      font-weight: bold;
+      color: #0056b3;
+    }
+  }
