@@ -1,0 +1,42 @@
+
+.container {
+    position: relative;
+    height: 150vh; // ensures scrolling space
+    display: flex;
+    justify-content: right;
+    align-items: right;
+  }
+  
+  .box1,
+  .box2,
+  .box3 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.1s ease-out;
+  }
+  
+  .box1 {
+    background-color: #1e90ff;
+    top: 100px;
+    z-index: 1;
+  }
+  
+  .box2 {
+    background-color: #32cd32;
+    top: 150px;
+    z-index: 2;
+  }
+  
+  .box3 {
+    background-color: #ff6347;
+    top: 200px;
+    z-index: 3;
+  }
+  
