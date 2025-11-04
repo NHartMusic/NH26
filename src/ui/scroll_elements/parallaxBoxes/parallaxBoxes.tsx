@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
-import styles from "./ParallaxBoxes.module.scss";
+
+import React, { useEffect, useState } from "react"
+import styles from "./ParallaxBoxes.module.scss"
 
 const ParallaxBoxes: React.FC = () => {
-  const [offsetY, setOffsetY] = useState<number>(0);
+  const [offsetY, setOffsetY] = useState<number>(0)
 
   useEffect(() => {
-    const handleScroll = () => setOffsetY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => setOffsetY(window.scrollY)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   // Helper to calculate lightened HSL color
   const getLightColor = (baseHue: number, baseSaturation: number, scrollFactor: number) => {
     // Cap the lightness between 50% and 90%
-    const lightness = Math.min(50 + scrollFactor * 0.1, 90);
-    return `hsl(${baseHue}, ${baseSaturation}%, ${lightness}%)`;
-  };
+    const lightness = Math.min(50 + scrollFactor * 0.1, 90)
+    return `hsl(${baseHue}, ${baseSaturation}%, ${lightness}%)`
+  }
 
   return (
     <div className={styles.container}>
@@ -47,7 +48,7 @@ const ParallaxBoxes: React.FC = () => {
         Front Box
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ParallaxBoxes;
+export default ParallaxBoxes
