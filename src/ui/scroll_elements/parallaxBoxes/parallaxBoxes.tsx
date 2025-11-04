@@ -2,7 +2,13 @@
 import React, { useEffect, useState } from "react"
 import styles from "./ParallaxBoxes.module.scss"
 
-const ParallaxBoxes: React.FC = () => {
+interface ParallaxBoxesProps {
+  baseColors?: [string, string, string] // Front, Middle, Back
+}
+
+const ParallaxBoxes: React.FC<ParallaxBoxesProps> = ({
+  baseColors = ["#ff6347", "#32cd32", "#1e90ff"], // default red, green, blue
+}) => {
   const [offsetY, setOffsetY] = useState<number>(0)
 
   useEffect(() => {
@@ -11,11 +17,22 @@ const ParallaxBoxes: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Helper to calculate lightened HSL color
-  const getLightColor = (baseHue: number, baseSaturation: number, scrollFactor: number) => {
-    // Cap the lightness between 50% and 90%
-    const lightness = Math.min(50 + scrollFactor * 0.1, 90)
-    return `hsl(${baseHue}, ${baseSaturation}%, ${lightness}%)`
+  // Helper to lighten a hex color based on scroll
+  const lightenColor = (hex: string, scrollFactor: number) => {
+    const clamp = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max)
+
+    // Convert hex to RGB
+    const bigint = parseInt(hex.replace("#", ""), 16)
+    let r = (bigint >> 16) & 255
+    let g = (bigint >> 8) & 255
+    let b = bigint & 255
+
+    // Lighten by 0.1% per pixel scrolled
+    r = clamp(r + scrollFactor * 0.2, 0, 255)
+    g = clamp(g + scrollFactor * 0.2, 0, 255)
+    b = clamp(b + scrollFactor * 0.2, 0, 255)
+
+    return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`
   }
 
   return (
@@ -24,7 +41,7 @@ const ParallaxBoxes: React.FC = () => {
         className={styles.box1}
         style={{
           transform: `translate(${100}px, ${offsetY * 0.6}px)`,
-          backgroundColor: getLightColor(210, 80, offsetY), // Blue
+          backgroundColor: lightenColor(baseColors[2], offsetY),
         }}
       >
         Back Box
@@ -33,7 +50,7 @@ const ParallaxBoxes: React.FC = () => {
         className={styles.box2}
         style={{
           transform: `translate(${50}px, ${offsetY * 0.4}px)`,
-          backgroundColor: getLightColor(120, 60, offsetY), // Green
+          backgroundColor: lightenColor(baseColors[1], offsetY),
         }}
       >
         Middle Box
@@ -42,7 +59,7 @@ const ParallaxBoxes: React.FC = () => {
         className={styles.box3}
         style={{
           transform: `translate(0, ${offsetY * 0.2}px)`,
-          backgroundColor: getLightColor(0, 70, offsetY), // Red
+          backgroundColor: lightenColor(baseColors[0], offsetY),
         }}
       >
         Front Box
