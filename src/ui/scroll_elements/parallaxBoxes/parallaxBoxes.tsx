@@ -1,5 +1,8 @@
 
 import React, { useEffect, useState } from "react"
+//assets
+import {Layer1, Layer2, Layer3 } from '../../../assets'
+//styles
 import styles from "./ParallaxBoxes.module.scss"
 
 interface ParallaxBoxesProps {
@@ -17,53 +20,36 @@ const ParallaxBoxes: React.FC<ParallaxBoxesProps> = ({
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Helper to lighten a hex color based on scroll
-  const lightenColor = (hex: string, scrollFactor: number) => {
-    const clamp = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max)
-
-    // Convert hex to RGB
-    const bigint = parseInt(hex.replace("#", ""), 16)
-    let r = (bigint >> 16) & 255
-    let g = (bigint >> 8) & 255
-    let b = bigint & 255
-
-    // Lighten by 0.1% per pixel scrolled
-    r = clamp(r + scrollFactor * 0.2, 0, 255)
-    g = clamp(g + scrollFactor * 0.2, 0, 255)
-    b = clamp(b + scrollFactor * 0.2, 0, 255)
-
-    return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`
-  }
-
   return (
     <div className={styles.container}>
       <div
         className={styles.box1}
         style={{
           transform: `translate(${100}px, ${offsetY * 0.6}px)`,
-          backgroundColor: lightenColor(baseColors[2], offsetY),
+            backgroundImage: `url(${Layer3})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
         }}
-      >
-        Back Box
-      </div>
+      />
+    
       <div
         className={styles.box2}
         style={{
           transform: `translate(${50}px, ${offsetY * 0.4}px)`,
-          backgroundColor: lightenColor(baseColors[1], offsetY),
+            backgroundImage: `url(${Layer2})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
         }}
-      >
-        Middle Box
-      </div>
+     />
       <div
         className={styles.box3}
         style={{
           transform: `translate(0, ${offsetY * 0.2}px)`,
-          backgroundColor: lightenColor(baseColors[0], offsetY),
+            backgroundImage: `url(${Layer1})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
         }}
-      >
-        Front Box
-      </div>
+     />
     </div>
   )
 }
