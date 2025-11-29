@@ -9,9 +9,7 @@ interface ParallaxBoxesProps {
   baseColors?: [string, string, string] // Front, Middle, Back
 }
 
-const ParallaxBoxes: React.FC<ParallaxBoxesProps> = ({
-  baseColors = ["#ff6347", "#32cd32", "#1e90ff"], // default red, green, blue
-}) => {
+const ParallaxBoxes: React.FC<ParallaxBoxesProps> = () => {
   const [offsetY, setOffsetY] = useState<number>(0)
 
   useEffect(() => {
@@ -20,36 +18,63 @@ const ParallaxBoxes: React.FC<ParallaxBoxesProps> = ({
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const blueShades = [
+    '#001f3f', '#003d5c', '#005a7a', '#007899', '#0096b8',
+    '#1e90ff', '#4da6ff', '#7abdff', '#a8d4ff', '#c5e3ff',
+    '#ddf0ff', '#e8f6ff'
+  ]
+
   return (
     <div className={styles.container}>
-      <div
-        className={styles.box1}
-        style={{
-          transform: `translate(${100}px, ${offsetY * 0.6}px)`,
+      <div className={styles.parallaxLayers}>
+        <div
+          style={{
+            position: 'absolute',
+            transform: `translate(${100}px, ${offsetY * 0.7}px)`,
             backgroundImage: `url(${Layer3})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-        }}
-      />
-    
-      <div
-        className={styles.box2}
-        style={{
-          transform: `translate(${50}px, ${offsetY * 0.4}px)`,
+            width: '300px',
+            height: '300px',
+            top: '100px',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            transform: `translate(${50}px, ${offsetY * 0.4}px)`,
             backgroundImage: `url(${Layer2})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-        }}
-     />
-      <div
-        className={styles.box3}
-        style={{
-          transform: `translate(0, ${offsetY * 0.2}px)`,
+            width: '300px',
+            height: '300px',
+            top: '150px',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            transform: `translate(0, ${offsetY * 0.1}px)`,
             backgroundImage: `url(${Layer1})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-        }}
-     />
+            width: '300px',
+            height: '300px',
+            top: '200px',
+          }}
+        />
+      </div>
+      <div className={styles.blueBoxesContainer}>
+        {blueShades.map((color, index) => (
+          <div
+            key={index}
+            style={{
+              background: color,
+              flex: 1,
+            }}
+          />
+        ))}
+      </div>
     </div>
   )
 }
