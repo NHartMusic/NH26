@@ -13,7 +13,9 @@ function Home() {
         <div className={styles.parallax_container}>
           <ParallaxBoxes />
         </div>
-      
+        <div>
+          <p>hello</p>
+        </div>
       </div>
     </>
   )
