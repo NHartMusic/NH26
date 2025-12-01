@@ -3,8 +3,7 @@
     position: relative;
     height: 150vh; // ensures scrolling space
     display: flex;
-    justify-content: right;
-    align-items: right;
+
   }
 
   .parallaxLayers {
@@ -16,7 +15,7 @@
   .blueBoxesContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    min-width: 400px;
   }
   .box2,
   .box3 {

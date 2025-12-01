@@ -10,9 +10,9 @@ function Home() {
     <>
       <div>
         <h1 className={styles.title}>Home</h1>
-        <div className={styles.parallax_container}>
+        
           <ParallaxBoxes />
-        </div>
+        
         <div>
           <p>hello</p>
         </div>
