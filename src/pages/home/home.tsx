@@ -8,13 +8,15 @@ function Home() {
 
   return (
     <>
-      <div>
-        <h1 className={styles.title}>Home</h1>
-        
+      <div className={styles.homeColumns}>
+        <div className={styles.leftColumn}>
+
+        </div>
+        <div className={styles.centerColumn}>
           <ParallaxBoxes />
-        
-        <div>
-          <p>hello</p>
+        </div>
+        <div className={styles.rightColumn}>
+
         </div>
       </div>
     </>

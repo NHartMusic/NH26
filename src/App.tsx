@@ -1,12 +1,11 @@
 
 //dependencies
-import * as React from 'react'
 import { Routes, Route } from "react-router-dom"
 import './App.css'
 //ui elements
 import { Header } from './ui'
 //pages
-import {Home, Portfolio} from './pages'
+import {Home, Music, Tech, Writing} from './pages'
 
 function App() {
 
@@ -16,7 +15,9 @@ function App() {
         <Header />
         <Routes>
           <Route path='/' element={<Home />} /> 
-          <Route path='/portfolio' element={<Portfolio />} /> 
+          <Route path='/music' element={<Music />} /> 
+          <Route path='/tech' element={<Tech />} /> 
+          <Route path='/writing' element={<Writing />} /> 
         </Routes>
       </div>
     </>
