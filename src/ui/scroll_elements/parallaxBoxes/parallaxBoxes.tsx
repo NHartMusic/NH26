@@ -1,78 +1,86 @@
-
-import React, { useEffect, useState } from "react"
-//assets
-import {Layer1, Layer2, Layer3 } from '../../../assets'
-//styles
+import React, { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { Layer1, Layer2, Layer3 } from "../../../assets"
 import styles from "./ParallaxBoxes.module.scss"
 
-interface ParallaxBoxesProps {
-  baseColors?: [string, string, string] // Front, Middle, Back
-}
+const ParallaxBoxes: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
 
-const ParallaxBoxes: React.FC<ParallaxBoxesProps> = () => {
-  const [offsetY, setOffsetY] = useState<number>(0)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  })
 
-  useEffect(() => {
-    const handleScroll = () => setOffsetY(window.scrollY)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  const layer3Y = useTransform(scrollYProgress, [0, 1], [0, 300])
+  const layer2Y = useTransform(scrollYProgress, [0, 1], [0, 180])
+  const layer1Y = useTransform(scrollYProgress, [0, 1], [0, 60])
+
+  const layer3Opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
+  const layer2Opacity = useTransform(scrollYProgress, [0, 1], [1, 0])
 
   const blueShades = [
-    '#001f3f', '#003d5c', '#005a7a', '#007899', '#0096b8',
-    '#1e90ff', '#4da6ff', '#7abdff', '#a8d4ff', '#c5e3ff',
-    '#ddf0ff', '#e8f6ff'
+    "#001f3f",
+    "#003d5c",
+    "#005a7a",
+    "#007899",
+    "#0096b8",
+    "#1e90ff",
+    "#4da6ff",
+    "#7abdff",
+    "#a8d4ff",
+    "#c5e3ff",
+    "#ddf0ff",
+    "#e8f6ff",
   ]
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={containerRef}>
       <div className={styles.parallaxLayers}>
-        <div
+        <motion.div
           style={{
-            position: 'absolute',
-            transform: `translate(${100}px, ${offsetY * 0.7}px)`,
+            position: "absolute",
+            y: layer3Y,
+            opacity: layer3Opacity,
             backgroundImage: `url(${Layer3})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '300px',
-            height: '300px',
-            top: '100px',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "300px",
+            height: "300px",
+            top: "100px",
           }}
         />
-        <div
+
+        <motion.div
           style={{
-            position: 'absolute',
-            transform: `translate(${50}px, ${offsetY * 0.4}px)`,
+            position: "absolute",
+            y: layer2Y,
+            opacity: layer2Opacity,
             backgroundImage: `url(${Layer2})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '300px',
-            height: '300px',
-            top: '150px',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "300px",
+            height: "300px",
+            top: "150px",
           }}
         />
-        <div
+
+        <motion.div
           style={{
-            position: 'absolute',
-            transform: `translate(0, ${offsetY * 0.1}px)`,
+            position: "absolute",
+            y: layer1Y,
             backgroundImage: `url(${Layer1})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            width: '300px',
-            height: '300px',
-            top: '200px',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            width: "300px",
+            height: "300px",
+            top: "200px",
           }}
         />
       </div>
+
       <div className={styles.blueBoxesContainer}>
         {blueShades.map((color, index) => (
-          <div
-            key={index}
-            style={{
-              background: color,
-              flex: 1,
-            }}
-          />
+          <div key={index} style={{ background: color, flex: 1 }} />
         ))}
       </div>
     </div>

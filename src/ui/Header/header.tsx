@@ -39,13 +39,13 @@ function Header() {
   return (
     <div className={styles.header}>
       <div className={styles.header_left}>
-        <Link to="/music" className={styles.headerLink}>
+        <Link to="/music" className={styles.header_link}>
           Music
         </Link>
-        <Link to="/tech" className={styles.headerLink}>
+        <Link to="/tech" className={styles.header_link}>
           Tech
         </Link>
-        <Link to="/writing" className={styles.headerLink}>
+        <Link to="/writing" className={styles.header_link}>
           Writing
         </Link>
       </div>

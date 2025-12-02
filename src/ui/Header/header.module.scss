@@ -9,6 +9,12 @@
     min-height: 100px;
     background: linear-gradient(to right, #c4e3ff, #6ec3d9);
 
+    a {
+        font-size: 1.7rem;
+        margin: 0 15px;
+        text-decoration: none;
+    }
+
     &_left {
         display: flex;
         position: absolute;
