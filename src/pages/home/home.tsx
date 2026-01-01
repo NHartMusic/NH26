@@ -1,30 +1,21 @@
 
 //styles
 import styles from './home.module.scss'
+import { Glitch_Portrait_01 } from '../../assets/Portraits'
 //ui elements
-import { ParallaxBoxes } from '../../ui'
+
 
 function Home() {
 
   return (
     <>
-      <div className={styles.homeColumns}>
-        <div className={styles.leftColumn}>
-          <div className={styles.box1}>
-            <p>Box 1</p>
+      <div>
+        <div className={styles.home_container}>
+          <h1 className={styles.home_title}>Nick Hart</h1>
+          <div className={styles.portrait_container}>
+            <img className={styles.home_portrait} src={Glitch_Portrait_01} alt="Glitch Portrait" />
           </div>
         </div>
-        <div className={styles.centerColumn}>
-          <ParallaxBoxes />
-        </div>
-        <div className={styles.rightColumn}>
-          <div className={styles.box2}>
-            <p>Box 2</p>
-          </div>
-        </div>
-      </div>
-      <div className={styles.banner}>
-        <p>Hello</p>
       </div>
     </>
   )

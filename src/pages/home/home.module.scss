@@ -1,20 +1,21 @@
 
-.title {
-    color: red;
+.home_title {
+    color: white;
 }
 
-.homeColumns {
+.portrait_container {
+    width: 500px;
+    height: 500px;
+    border: 2px solid white;
+    border-radius: 10%;
     display: flex;
-    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
 }
 
-.banner {
-    height: 800px;
-    background: #f0f8ff;
-    text-align: center;
-    padding: none;
-}
-
-.box1 {
-    width: 100%;;
+.home_portrait {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    margin: 0 auto;
 }
