@@ -6,11 +6,12 @@
 .portrait_container {
     width: 500px;
     height: 500px;
-    border: 2px solid white;
-    border-radius: 10%;
     display: flex;
     margin: 0 auto;
     align-items: center;
+    position: relative;
+    background-size: 300% 300%;
+    padding: 4px;
 }
 
 .home_portrait {
@@ -18,4 +19,5 @@
     height: 400px;
     display: flex;
     margin: 0 auto;
+    background: white;
 }
