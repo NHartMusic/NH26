@@ -1,20 +1,20 @@
 // dependencies
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faSquareGithub,
   faSquareLinkedin,
   faSquareInstagram,
-} from "@fortawesome/free-brands-svg-icons";
+} from "@fortawesome/free-brands-svg-icons"
 
 // styles
-import styles from "./header.module.scss";
+import styles from "./header.module.scss"
 
 // Create a strongly-typed array for social icons
 interface SocialLink {
-  href: string;
-  icon: any; // FontAwesomeIcon type
-  label: string;
+  href: string
+  icon: any // FontAwesomeIcon type
+  label: string
 }
 
 const socialLinks: SocialLink[] = [
@@ -33,7 +33,7 @@ const socialLinks: SocialLink[] = [
     icon: faSquareInstagram,
     label: "Instagram",
   },
-];
+]
 
 function Header() {
   return (
@@ -66,12 +66,12 @@ function Header() {
             className={styles.headerLink}
             aria-label={label}
           >
-            <FontAwesomeIcon icon={icon} />
+            <FontAwesomeIcon className={styles.icon} icon={icon} />
           </a>
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

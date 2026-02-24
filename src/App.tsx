@@ -5,7 +5,7 @@ import './App.css'
 //ui elements
 import { Header } from './ui'
 //pages
-import {Home, Music, Tech, Writing} from './pages'
+import {Home, Music, Tech, Writing, Portfolio} from './pages'
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
           <Route path='/music' element={<Music />} /> 
           <Route path='/tech' element={<Tech />} /> 
           <Route path='/writing' element={<Writing />} /> 
+          <Route path='/portfolio' element={<Portfolio />} /> 
         </Routes>
       </div>
     </>
