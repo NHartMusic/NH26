@@ -1,0 +1,13 @@
+
+.grid_container {
+    display: flex;
+    margin: 20px auto;
+    justify-content: space-evenly;
+}
+
+.grid_content {
+    display: flex;
+    height: 100px; 
+    width: 100px;
+    background-color: blue;
+}
