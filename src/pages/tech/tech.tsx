@@ -1,12 +1,15 @@
 
+//styles
 import styles from './tech.module.scss'
+
+//ui elements
+import Grid from '../../ui/containers/grid/grid'
+
 
 function Tech() {
   return (
-    <div className={styles.grid_container}>
-      <div className={styles.grid_content}>1</div>
-      <div className={styles.grid_content}>2</div>
-      <div className={styles.grid_content}>3</div>
+    <div className={styles.portfolio_container}>
+     <Grid />
     </div>
   )
 }
