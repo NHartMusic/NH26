@@ -5,7 +5,9 @@ import styles from './containers.module.scss'
 
 type GridItem = {
   id: string
+  number: number
   title: string
+  description: string
 }
 
 function Grid() {
@@ -18,10 +20,14 @@ function Grid() {
       try {
         const snapshot = await getDocs(collection(db, 'gridItems'))
 
-        const data: GridItem[] = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          title: doc.data().title ?? '',
-        }))
+        const data: GridItem[] = snapshot.docs
+          .map((doc) => ({
+            id: doc.id,
+            number: doc.data().number ?? 0,
+            title: doc.data().title ?? '',
+            description: doc.data().description ?? ''
+          }))
+          .sort((a, b) => a.number - b.number)
 
         console.log('Loaded grid items:', data)
 
@@ -60,7 +66,8 @@ function Grid() {
           key={item.id}
           className={styles.grid_content}
         >
-          {item.title}
+          <h3 className={styles.grid_content__title}>{item.title}</h3>
+          <p className={styles.grid_content__description}>{item.description}</p>
         </div>
       ))}
     </div>

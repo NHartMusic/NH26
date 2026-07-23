@@ -1,13 +1,23 @@
 
-.grid_container {
-    display: flex;
-    margin: 20px auto;
-    justify-content: space-evenly;
-}
+.grid {
+    &_container {
+        display: flex;
+        margin: 20px auto;
+        justify-content: space-evenly;
+    }
 
-.grid_content {
-    display: flex;
-    height: 100px; 
-    width: 100px;
-    background-color: blue;
+    &_content {
+        display: flex;
+        margin: 0 auto;
+        min-height: 200px; 
+        min-width: 200px;
+        background-color: blue;
+
+        &__title {
+            display: flex;
+            margin: 20px auto;
+            color: white;
+        }
+     
+    }
 }
